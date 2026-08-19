@@ -347,9 +347,27 @@
   // ---------- api ----------
 
   async function api(path, method, body) {
-    var opts = { method: method || 'GET', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + S.token } };
+    var opts = {
+      method: method || 'GET',
+      // no-store stops the browser sending If-None-Match, which would
+      // otherwise come back as a 304 with an empty body and leave the
+      // panel looking empty even though the data is there.
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        Authorization: 'Bearer ' + S.token
+      }
+    };
     if (body) opts.body = JSON.stringify(body);
-    var res = await fetch(path, opts);
+
+    // A cache-busting parameter as a belt-and-braces measure: some
+    // proxies and extensions revalidate regardless of the headers above.
+    var url = path + (path.indexOf('?') === -1 ? '?' : '&') + '_=' + Date.now();
+    var res = await fetch(url, opts);
+
+    if (res.status === 304) throw new Error('The server returned a cached empty response. Please refresh the page.');
+
     var data = {};
     try { data = await res.json(); } catch (e) {}
     if (res.status === 401) { alert('Your session expired. Please sign in again.'); await sb.auth.signOut(); location.reload(); throw new Error('expired'); }

@@ -27,6 +27,8 @@ const ALLOWED = {
 };
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+
   const admin = await requireAdmin(req);
   if (!admin) return deny(res, 401, 'Please sign in again');
 

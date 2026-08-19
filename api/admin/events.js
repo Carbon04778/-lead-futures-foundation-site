@@ -25,6 +25,11 @@ const WRITABLE = [
 const LONG_FIELDS = { description: 20000, excerpt: 500, seo_description: 500 };
 
 export default async function handler(req, res) {
+  // Admin data must never be cached. Without this the browser
+  // revalidates and the platform answers 304 Not Modified with an
+  // empty body, which the panel cannot parse as JSON.
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+
   const admin = await requireAdmin(req);
   if (!admin) return deny(res, 401, 'Please sign in again');
 
