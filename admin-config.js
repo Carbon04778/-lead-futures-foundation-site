@@ -17,10 +17,10 @@ window.LF_ADMIN_CONFIG = {
   // CHANGE THIS — Supabase → Project Settings → Data API → Project URL
   // No trailing slash. No "/rest/v1" on the end.
   // Example: https://abcdefghijkl.supabase.co
-  SUPABASE_URL: 'PASTE_YOUR_PROJECT_URL_HERE',
+  SUPABASE_URL: 'https://jntkunpgiwukcijhkveq.supabase.co',
 
   // CHANGE THIS — Supabase → Project Settings → API Keys → Publishable key
   // Starts with "sb_publishable_". NOT the secret key.
-  SUPABASE_PUBLISHABLE_KEY: 'PASTE_YOUR_PUBLISHABLE_KEY_HERE'
+  SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_j5spJLisedZ8x6Ez_dWx2A_FHgnWzkW'
 
 };
