@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/base.css">
+  <link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/styles.css">
+  <script src="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/_ds_bundle.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--surface-page); }
+    :root { scroll-padding-top: 76px; }
+    a { color: var(--lf-clay); }
+    a:hover { color: var(--lf-clay-700); }
+    .lf-navlink { position: relative; }
+    .lf-navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 1.5px; background: var(--lf-clay); transition: right var(--dur-normal) var(--ease-out); }
+    .lf-navlink:hover::after { right: 0; }
+  </style>
+  <link rel="stylesheet" href="mobile.css">
+</helmet>
+
+<div style="font-family: var(--font-body); color: var(--text-primary); overflow-x: hidden;">
+
+  <!-- ================= HEADER ================= -->
+  <header data-screen-label="Header" style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: rgba(242,242,231,0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-soft);">
+    <a href="index.html" style="display: flex; align-items: center; gap: 11px; text-decoration: none;">
+      <img src="assets/logo-mark-color.png" alt="LEAD Futures Foundation" style="height: 40px;">
+      <span style="font-family: var(--font-display); font-size: 25px; color: var(--lf-evergreen); line-height: 1;">Lead<em style="color: var(--lf-clay);">futures</em></span>
+    </a>
+    <input type="checkbox" id="lf-menu-toggle" class="lf-menu-checkbox">
+    <label for="lf-menu-toggle" class="lf-menu-btn" aria-label="Toggle menu">
+      <svg class="lf-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="lf-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </label>
+    <nav style="display: flex; align-items: center; gap: 28px;">
+      <a class="lf-navlink" href="index.html#mission" style="font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none;">Mission</a>
+      <a class="lf-navlink" href="#top" onclick="document.getElementById('lf-menu-toggle').checked=false" style="font-size: 15px; font-weight: 600; color: var(--lf-evergreen); text-decoration: none;">Programs</a>
+      <a class="lf-navlink" href="https://www.leadfuturesfoundation.org/events" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none;">Events</a>
+      <a class="lf-navlink" href="index.html#impact" style="font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none;">Impact</a>
+      <a class="lf-navlink" href="index.html#involved" style="font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none;">Get involved</a>
+      <a href="https://givebutter.com/opengiving" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: var(--lf-clay); color: #FBF1E9; border-radius: var(--radius-pill); padding: 10px 22px; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: background var(--dur-fast) var(--ease-out);" style-hover="background: var(--lf-clay-700);">Donate</a>
+    </nav>
+  </header>
+
+  <!-- ================= PAGE HERO ================= -->
+  <section id="top" data-screen-label="Programs hero" style="background: var(--lf-evergreen); padding: 88px 40px 72px;">
+    <div style="max-width: 1120px; margin: 0 auto;">
+      <span class="lf-overline" style="color: var(--lf-field-gold);">Our programs</span>
+      <h1 style="font-family: var(--font-display); font-size: 58px; color: var(--lf-off-white); margin: 16px 0 18px; letter-spacing: -0.015em; line-height: 1.06; max-width: 760px;">Where belonging becomes <em style="color: var(--lf-field-gold);">leadership</em>.</h1>
+      <p style="font-size: 19px; line-height: 1.65; color: rgba(242,242,231,0.9); max-width: 640px; margin: 0 0 28px;">From a first pair of new shoes to a first career in technology, our programs meet people where they are and walk alongside them as they grow. This is the work, up close.</p>
+
+    </div>
+  </section>
+
+  <!-- ================= L · WOMEN IN TECH ================= -->
+  <section id="learn" data-screen-label="Women in Tech" style="padding: 88px 40px; background: var(--surface-page);">
+    <div style="max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;">
+          <span style="font-family: var(--font-display); font-size: 64px; line-height: 0.8; color: var(--lf-sage); font-weight: 500;">L</span>
+          <span class="lf-overline" style="color: var(--lf-sage);">Learn · Scholarships</span>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 42px; color: var(--lf-evergreen); margin: 0 0 16px; letter-spacing: -0.01em;">Women in Tech Scholarship</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0 0 14px;">Scholarships supporting women through four year college degrees on the way to technology careers. Thirteen awarded so far, with a goal of 150, and we stay with each scholar past graduation with career training, mentorship, and support as they step into the industry.</p>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0 0 24px;">The program was born from three lives that opened doors for others: Kathleen Mito, Jonathan Oliver, and Kevin Buckley. Scholarships in their names carry their legacies forward and anchor a broader commitment to advancing women in technology.</p>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap;">
+          <a href="https://givebutter.com/womenintech" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; background: var(--lf-evergreen); color: var(--lf-off-white); border-radius: var(--radius-pill); padding: 13px 26px; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: background var(--dur-fast) var(--ease-out);" style-hover="background: var(--lf-evergreen-700);">Fund a scholarship&nbsp;→</a>
+          <a href="index.html#legacy" style="display: inline-flex; align-items: center; font-size: 15px; color: var(--lf-clay); font-weight: 600; text-decoration: none;" style-hover="color: var(--lf-clay-700);">Meet the three we honor&nbsp;→</a>
+        </div>
+      </div>
+      <img src="assets/photo-school-class.jpg" alt="Students and mentors in a San Diego classroom" style="width: 100%; height: 440px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+    </div>
+  </section>
+
+  <!-- ================= E · EVOKICKS ================= -->
+  <section id="empower" data-screen-label="EVOKicks" style="padding: 88px 40px; background: var(--surface-sunken);">
+    <div style="max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <img src="assets/photo-evokicks-gift-anon.jpg" alt="A student receiving new shoes at an EVOKicks celebration" style="width: 100%; height: 440px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); order: 0;">
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;">
+          <span style="font-family: var(--font-display); font-size: 64px; line-height: 0.8; color: var(--lf-field-gold); font-weight: 500;">E</span>
+          <span class="lf-overline" style="color: var(--lf-olive);">Empower · Youth opportunity</span>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 42px; color: var(--lf-evergreen); margin: 0 0 16px; letter-spacing: -0.01em;">EVOKicks: Step Into Success</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0 0 14px;">Brand new shoes on students, paired with mentorship and a campus celebration. New shoes represent dignity, pride, and possibility, and the day is built around confidence and belonging.</p>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0 0 20px;">Over 300 pairs have been given to date, and cofounder Cesar Enciso dreams of one million pairs in his lifetime.</p>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap;">
+          <a href="https://givebutter.com/XPz2Rw" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; background: var(--lf-clay); color: #FBF1E9; border-radius: var(--radius-pill); padding: 13px 26px; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: background var(--dur-fast) var(--ease-out);" style-hover="background: var(--lf-clay-700);">Donate to EVOKicks&nbsp;→</a>
+          <a href="https://www.evokicks.org" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; font-size: 15px; color: var(--lf-clay); font-weight: 600; text-decoration: none;" style-hover="color: var(--lf-clay-700);">Visit evokicks.org&nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= A · LEAD CONNECT ================= -->
+  <section id="act" data-screen-label="LEAD Connect" style="padding: 88px 40px; background: var(--surface-page);">
+    <div style="max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;">
+          <span style="font-family: var(--font-display); font-size: 64px; line-height: 0.8; color: var(--lf-clay); font-weight: 500;">A</span>
+          <span class="lf-overline" style="color: var(--lf-clay);">Act · Mentorship</span>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 42px; color: var(--lf-evergreen); margin: 0 0 16px; letter-spacing: -0.01em;">LEAD Connect</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0 0 14px;">Turning potential into momentum. Mentors and mentees are matched through education, athletics, career exploration, leadership experiences, and community involvement, with around 100 mentorship relationships built so far and a goal of 300.</p>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0 0 24px;">Sports camps extend the same idea onto the field: break even tuition with sponsor funded scholarships, headlined by Starting Lineup athletes.</p>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap;">
+          <a href="https://docs.google.com/forms/d/1n2UmM2VQsYtGh_0C9eWodLbypPjmZdRjo-leL2ovLBY/viewform" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; background: var(--lf-evergreen); color: var(--lf-off-white); border-radius: var(--radius-pill); padding: 13px 26px; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: background var(--dur-fast) var(--ease-out);" style-hover="background: var(--lf-evergreen-700);">Become a mentor&nbsp;→</a>
+          <a href="https://docs.google.com/forms/d/1s8VZY-QU5gS6G4YZtyJPr7UjY-KsuiEelpndzil_N7s/viewform" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; font-size: 15px; color: var(--lf-clay); font-weight: 600; text-decoration: none;" style-hover="color: var(--lf-clay-700);">Become a mentee&nbsp;→</a>
+        </div>
+      </div>
+      <img src="assets/photo-athletes.jpg" alt="Student athletes with mentors at a LEAD sports camp" style="width: 100%; height: 440px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+    </div>
+  </section>
+
+  <!-- ================= D · LIFE SKILLS + WELLBEING ================= -->
+  <section id="develop" data-screen-label="Develop and Wellbeing" style="padding: 88px 40px; background: var(--lf-evergreen);">
+    <div style="max-width: 1120px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-bottom: 56px;">
+        <div>
+          <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;">
+            <span style="font-family: var(--font-display); font-size: 64px; line-height: 0.8; color: var(--lf-field-gold); font-weight: 500;">D</span>
+            <span class="lf-overline" style="color: var(--lf-field-gold);">Develop · Lasting growth</span>
+          </div>
+          <h2 style="font-family: var(--font-display); font-size: 42px; color: var(--lf-off-white); margin: 0 0 16px; letter-spacing: -0.01em;">Life Skills</h2>
+          <p style="font-size: 17px; line-height: 1.7; color: rgba(242,242,231,0.9); margin: 0;">Growing skills that last a lifetime. Life skills and financial literacy that give people the tools to grow with confidence, independence, and long term success, with a goal of 250 participants.</p>
+        </div>
+        <div>
+          <div style="margin-bottom: 14px; padding-top: 34px;">
+            <span class="lf-overline" style="color: var(--lf-field-gold);">Develop · Wellbeing</span>
+          </div>
+          <h2 style="font-family: var(--font-display); font-size: 42px; color: var(--lf-off-white); margin: 0 0 16px; letter-spacing: -0.01em;">Nervous System Leadership Initiative</h2>
+          <p style="font-size: 17px; line-height: 1.7; color: rgba(242,242,231,0.9); margin: 0;">The initiative extends life skills to the body itself: self regulation and somatic wellbeing for firefighters, police officers, teachers, students, social workers, and frontline staff. It is designed and led by Darlene Erich, a former Chief Nursing Officer and trauma informed somatic educator with more than twenty years leading critical care teams.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px;">
+        <div style="background: rgba(242,242,231,0.07); border: 1px solid rgba(242,242,231,0.14); border-radius: var(--radius-lg); padding: 24px 20px;">
+          <div style="font-family: var(--font-display); font-size: 21px; color: var(--lf-field-gold); margin-bottom: 8px;">Regulated Educators</div>
+          <p style="font-size: 14px; line-height: 1.6; color: rgba(242,242,231,0.8); margin: 0;">Helping teachers and school staff stay grounded through the school day, so they leave with energy left over and can pass those same skills to their students.</p>
+        </div>
+        <div style="background: rgba(242,242,231,0.07); border: 1px solid rgba(242,242,231,0.14); border-radius: var(--radius-lg); padding: 24px 20px;">
+          <div style="font-family: var(--font-display); font-size: 21px; color: var(--lf-field-gold); margin-bottom: 8px;">Youth Labs</div>
+          <p style="font-size: 14px; line-height: 1.6; color: rgba(242,242,231,0.8); margin: 0;">Teaching students to understand their own nervous system, a leadership skill for staying steady under pressure, in performance, and in conflict.</p>
+        </div>
+        <div style="background: rgba(242,242,231,0.07); border: 1px solid rgba(242,242,231,0.14); border-radius: var(--radius-lg); padding: 24px 20px;">
+          <div style="font-family: var(--font-display); font-size: 21px; color: var(--lf-field-gold); margin-bottom: 8px;">Social Impact Leaders</div>
+          <p style="font-size: 14px; line-height: 1.6; color: rgba(242,242,231,0.8); margin: 0;">Supporting social workers and nonprofit staff who absorb other people's hardest days, with tools to recover, recharge, and keep helping for the long haul.</p>
+        </div>
+        <div style="background: rgba(242,242,231,0.07); border: 1px solid rgba(242,242,231,0.14); border-radius: var(--radius-lg); padding: 24px 20px;">
+          <div style="font-family: var(--font-display); font-size: 21px; color: var(--lf-field-gold); margin-bottom: 8px;">Resilient Responders</div>
+          <p style="font-size: 14px; line-height: 1.6; color: rgba(242,242,231,0.8); margin: 0;">Giving firefighters, police officers, and first responders practical ways to stay calm in the moment, reset between calls, and lean on each other to make a hard job sustainable.</p>
+        </div>
+      </div>
+      <a href="https://givebutter.com/somatic-wellness-95oyyb" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; background: var(--lf-field-gold); color: var(--lf-ink); border-radius: var(--radius-pill); padding: 13px 26px; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: opacity var(--dur-fast) var(--ease-out);" style-hover="opacity: 0.88;">Support the wellbeing initiative&nbsp;→</a>
+    </div>
+  </section>
+
+  <!-- ================= SERVICE ================= -->
+  <section id="service" data-screen-label="Service" style="padding: 88px 40px; background: var(--surface-page);">
+    <div style="max-width: 1120px; margin: 0 auto;">
+      <div style="max-width: 620px; margin-bottom: 40px;">
+        <span class="lf-overline">Service</span>
+        <h2 style="font-family: var(--font-display); font-size: 42px; color: var(--lf-evergreen); margin: 14px 0 12px; letter-spacing: -0.01em;">Hands that give back.</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin: 0;">Turnkey volunteer activations where teams show up and the impact is countable.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 34px 32px;">
+          <span class="lf-overline" style="color: var(--lf-clay);">Corporate volunteering</span>
+          <h3 style="font-family: var(--font-display); font-size: 26px; color: var(--lf-evergreen); margin: 8px 0 10px;">Rise Against Hunger</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--text-secondary); margin: 0;">High volume meal packing with a countable result: over one million meals packed and fed to date.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 34px 32px;">
+          <span class="lf-overline" style="color: var(--lf-clay);">Community care</span>
+          <h3 style="font-family: var(--font-display); font-size: 26px; color: var(--lf-evergreen); margin: 8px 0 10px;">Homeless Backpack Build</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--text-secondary); margin: 0;">Teams assemble backpacks of essentials for neighbors experiencing homelessness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section data-screen-label="Programs CTA" style="padding: 80px 40px; background: var(--lf-clay);">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: var(--font-display); font-size: 38px; color: #FBF1E9; margin: 0 0 14px; letter-spacing: -0.01em; line-height: 1.15;">Every program needs people who believe.</h2>
+      <p style="font-size: 17px; color: rgba(251,241,233,0.86); margin: 0 0 28px;">Give, mentor, or bring your company alongside us.</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://givebutter.com/opengiving" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 9px; background: var(--lf-evergreen); color: var(--lf-off-white); border-radius: var(--radius-pill); padding: 14px 30px; font-size: 16px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: background var(--dur-fast) var(--ease-out);" style-hover="background: var(--lf-evergreen-700);">Donate</a>
+        <a href="index.html#involved" style="display: inline-flex; align-items: center; gap: 9px; background: transparent; color: #FBF1E9; border: 1.5px solid rgba(251,241,233,0.6); border-radius: var(--radius-pill); padding: 14px 30px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background var(--dur-fast) var(--ease-out);" style-hover="background: rgba(251,241,233,0.12);">Get involved</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer data-screen-label="Footer" style="background: var(--lf-evergreen); color: var(--lf-off-white); padding: 48px 40px 36px;">
+    <div style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+        <img src="assets/logo-mark-color.png" alt="" style="height: 34px;">
+        <span style="font-family: var(--font-display); font-size: 21px; color: var(--lf-off-white);">Lead<em style="color: var(--lf-field-gold);">futures</em></span>
+      </a>
+      <span style="font-size: 13px; color: rgba(242,242,231,0.6);">© 2026 LEAD Futures Foundation · A 501(c)(3) nonprofit · EIN 86-2735995</span>
+      <a href="index.html" style="font-size: 14px; color: rgba(242,242,231,0.82); text-decoration: none;" style-hover="color: var(--lf-field-gold);">← Back to home</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

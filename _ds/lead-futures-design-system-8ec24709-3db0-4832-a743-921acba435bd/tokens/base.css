@@ -1,0 +1,76 @@
+/* ============================================================
+   LEAD Futures Foundation — Base element defaults
+   Lightweight, non-invasive. Sets the brand ground + type.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+}
+
+/* Display headings default to the serif voice */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--text-brand);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-display-lg); line-height: var(--lh-tight); }
+h2 { font-size: var(--fs-display-md); }
+h3 { font-size: var(--fs-h2); }
+
+/* Sub-headings & body use the sans voice */
+h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  line-height: var(--lh-relaxed);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--text-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--action-accent-hover); }
+
+/* The brand's signature tracked-out label */
+.lf-overline {
+  font-family: var(--font-body);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+::selection {
+  background: var(--lf-field-gold-100);
+  color: var(--lf-ink);
+}

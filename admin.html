@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — LEAD Futures Foundation</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/base.css">
+
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-page); color: var(--text-primary);
+         font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  h1,h2,h3 { font-family: var(--font-display); font-weight: 500; margin: 0; }
+  button { font-family: var(--font-body); cursor: pointer; }
+  input, textarea, select { font-family: var(--font-body); font-size: 15px; }
+
+  .btn { border-radius: var(--radius-pill); border: none; padding: 11px 22px;
+         font-size: 14px; font-weight: 600; transition: background 140ms; }
+  .btn-primary { background: var(--lf-evergreen); color: var(--lf-off-white); }
+  .btn-primary:hover { background: var(--lf-evergreen-700); }
+  .btn-clay { background: var(--lf-clay); color: #FBF1E9; }
+  .btn-clay:hover { background: var(--lf-clay-700); }
+  .btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-default); }
+  .btn-ghost:hover { border-color: var(--lf-evergreen); color: var(--lf-evergreen); }
+  .btn-danger { background: transparent; color: var(--lf-danger); border: 1px solid var(--lf-danger); }
+  .btn-danger:hover { background: var(--lf-danger); color: #fff; }
+  .btn-sm { padding: 7px 15px; font-size: 12.5px; }
+  .btn:disabled { opacity: .45; cursor: default; }
+
+  /* ---------- login ---------- */
+  #login { min-height: 100vh; display: flex; align-items: center; justify-content: center;
+           padding: 32px 20px; background: var(--lf-evergreen); }
+  .lcard { width: 100%; max-width: 400px; background: var(--surface-card);
+           border-radius: var(--radius-lg); padding: 46px 42px; box-shadow: var(--shadow-md); }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+                 font-weight: 700; color: var(--lf-evergreen); margin-bottom: 8px; }
+  .field input, .field textarea, .field select {
+    width: 100%; padding: 11px 14px; border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm, 6px); background: var(--surface-page);
+    color: var(--text-primary); outline: none; }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--lf-clay); }
+  .field .hint { font-size: 11.5px; color: var(--text-muted); margin-top: 5px; }
+
+  /* ---------- shell ---------- */
+  #app { display: none; min-height: 100vh; flex-direction: column; }
+  #app.on { display: flex; }
+  .bar { background: var(--lf-evergreen); position: sticky; top: 0; z-index: 50; }
+  .bar-in { max-width: 1240px; margin: 0 auto; padding: 0 32px; height: 68px;
+            display: flex; align-items: center; gap: 16px; }
+  .bar-t { font-family: var(--font-display); font-size: 21px; color: var(--lf-off-white); }
+  .bar-tag { font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+             color: var(--lf-field-gold); font-weight: 700; padding-top: 3px; }
+  .bar-r { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+  .bar-u { font-size: 12.5px; color: rgba(242,242,231,.6); }
+  .bar-b { background: none; border: none; font-size: 12.5px; font-weight: 500;
+           color: rgba(242,242,231,.8); }
+  .bar-b:hover { color: var(--lf-field-gold); }
+
+  .tabs { border-bottom: 1px solid var(--border-default); background: var(--surface-card); }
+  .tabs-in { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; gap: 4px; }
+  .tab { background: none; border: none; padding: 15px 20px; font-size: 14px; font-weight: 600;
+         color: var(--text-secondary); border-bottom: 2.5px solid transparent; }
+  .tab.on { color: var(--lf-evergreen); border-bottom-color: var(--lf-clay); }
+  .tab .n { font-size: 11.5px; color: var(--text-muted); margin-left: 5px; font-weight: 500; }
+
+  main { flex: 1; max-width: 1240px; margin: 0 auto; padding: 30px 32px 80px; width: 100%; }
+  .toprow { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .search { flex: 1; min-width: 190px; padding: 10px 14px; border: 1px solid var(--border-default);
+            border-radius: var(--radius-pill); background: var(--surface-card); outline: none; }
+  .search:focus { border-color: var(--lf-clay); }
+
+  /* ---------- rows ---------- */
+  .row { background: var(--surface-card); border: 1px solid var(--border-soft); border-bottom: none;
+         padding: 16px 22px; display: grid; gap: 18px; align-items: center; }
+  .row:first-of-type { border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); }
+  .rows .row:last-of-type { border-bottom: 1px solid var(--border-soft);
+         border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
+  .row-ev { grid-template-columns: 74px 1fr 130px 96px auto; cursor: pointer; }
+  .row-sub { grid-template-columns: 1fr 130px 110px auto; }
+  .row:hover { background: #FCFCF7; }
+  .thumb { width: 74px; height: 54px; object-fit: cover; border-radius: var(--radius-sm, 6px);
+           background: var(--lf-parchment); }
+  .thumb-x { width: 74px; height: 54px; border-radius: var(--radius-sm, 6px);
+             background: var(--lf-parchment); display: flex; align-items: center;
+             justify-content: center; color: var(--text-muted); font-size: 10px; }
+  .r-t { font-family: var(--font-display); font-size: 19px; color: var(--lf-evergreen); line-height: 1.2; }
+  .r-s { font-size: 12.5px; color: var(--text-secondary); margin-top: 3px; }
+  .r-d { font-size: 13px; color: var(--text-secondary); }
+
+  .pill { display: inline-block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+          font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); }
+  .pill.published { background: var(--lf-evergreen); color: var(--lf-off-white); }
+  .pill.draft { background: var(--lf-field-gold-100); color: var(--lf-olive); }
+  .pill.active { background: var(--lf-evergreen-100); color: var(--lf-evergreen); }
+  .pill.unsubscribed, .pill.bounced { background: transparent; color: var(--text-muted); border: 1px solid var(--border-default); }
+  .pill.past { background: transparent; color: var(--text-muted); border: 1px solid var(--border-default); }
+
+  .empty { background: var(--surface-card); border: 1px solid var(--border-soft);
+           border-radius: var(--radius-lg); padding: 66px 30px; text-align: center;
+           color: var(--text-secondary); }
+  .err { background: #F7E3DE; border-left: 3px solid var(--lf-danger); padding: 12px 16px;
+         font-size: 13.5px; color: #7C2D14; border-radius: 4px; margin-bottom: 18px; }
+  .ok  { background: var(--lf-evergreen-100); border-left: 3px solid var(--lf-success);
+         padding: 12px 16px; font-size: 13.5px; border-radius: 4px; margin-bottom: 18px; }
+
+  /* ---------- editor ---------- */
+  .sheet { position: fixed; inset: 0; z-index: 90; display: none; }
+  .sheet.on { display: block; }
+  .sheet-bg { position: absolute; inset: 0; background: rgba(38,48,31,.5); }
+  .sheet-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(680px, 100%);
+                 background: var(--surface-page); overflow-y: auto; box-shadow: -8px 0 40px rgba(0,0,0,.2); }
+  .sheet-head { position: sticky; top: 0; background: var(--lf-evergreen); padding: 20px 30px;
+                display: flex; align-items: center; gap: 14px; z-index: 2; }
+  .sheet-head h2 { font-size: 21px; color: var(--lf-off-white); flex: 1; }
+  .sheet-body { padding: 28px 30px 40px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+  .sec { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700;
+         color: var(--lf-clay); margin: 30px 0 14px; padding-bottom: 8px;
+         border-bottom: 1px solid var(--border-soft); }
+  .sec:first-child { margin-top: 0; }
+  .check { display: flex; align-items: center; gap: 9px; font-size: 14px; margin-bottom: 16px; }
+  .check input { width: auto; }
+  .foot { position: sticky; bottom: 0; background: var(--surface-card);
+          border-top: 1px solid var(--border-default); padding: 16px 30px;
+          display: flex; gap: 10px; align-items: center; }
+  .preview { width: 100%; max-height: 200px; object-fit: cover; border-radius: var(--radius-sm, 6px);
+             margin-bottom: 10px; display: block; }
+
+  @media (max-width: 860px) {
+    .row-ev { grid-template-columns: 1fr auto; }
+    .row-ev .thumb, .row-ev .thumb-x, .row-ev .r-d { display: none; }
+    .row-sub { grid-template-columns: 1fr auto; }
+    .grid2 { grid-template-columns: 1fr; }
+    .bar-in, .tabs-in, main { padding-left: 18px; padding-right: 18px; }
+    .bar-u { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="login">
+  <div class="lcard">
+    <div style="width:40px;height:40px;border-radius:50%;border:1px solid var(--border-default);display:flex;align-items:center;justify-content:center;color:var(--lf-evergreen);margin-bottom:22px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h1 style="font-size:31px;color:var(--lf-evergreen);margin-bottom:8px;">Admin</h1>
+    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 28px;line-height:1.6;">Manage events and your newsletter list.</p>
+    <div id="lerr" class="err" style="display:none;"></div>
+    <div class="field"><label for="lem">Email</label><input id="lem" type="email" autocomplete="username" autofocus></div>
+    <div class="field" style="margin-bottom:26px;"><label for="lpw">Password</label><input id="lpw" type="password" autocomplete="current-password"></div>
+    <button id="lbtn" class="btn btn-clay" style="width:100%;">Sign in</button>
+    <p style="margin:22px 0 0;font-size:13px;"><a href="index.html" style="color:var(--text-muted);text-decoration:none;">&larr; Back to the website</a></p>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app">
+  <header class="bar"><div class="bar-in">
+    <span class="bar-t">Lead<em style="color:var(--lf-field-gold);">futures</em></span>
+    <span class="bar-tag">Admin</span>
+    <div class="bar-r">
+      <span class="bar-u" id="who"></span>
+      <button class="bar-b" id="reload">Refresh</button>
+      <button class="bar-b" id="signout">Sign out</button>
+    </div>
+  </div></header>
+
+  <div class="tabs"><div class="tabs-in">
+    <button class="tab on" data-tab="events">Events <span class="n" id="n-ev">0</span></button>
+    <button class="tab" data-tab="subs">Newsletter <span class="n" id="n-sub">0</span></button>
+  </div></div>
+
+  <main>
+    <div id="aerr" class="err" style="display:none;"></div>
+    <div id="aok" class="ok" style="display:none;"></div>
+
+    <div id="pane-events">
+      <div class="toprow">
+        <input class="search" id="q-ev" type="search" placeholder="Search events&hellip;">
+        <select id="f-ev" style="padding:10px 14px;border:1px solid var(--border-default);border-radius:var(--radius-pill);background:var(--surface-card);">
+          <option value="upcoming">Upcoming</option>
+          <option value="all">All</option>
+          <option value="draft">Drafts</option>
+          <option value="published">Published</option>
+          <option value="past">Past</option>
+        </select>
+        <button class="btn btn-clay" id="new-ev">+ New event</button>
+      </div>
+      <div class="rows" id="list-ev"></div>
+    </div>
+
+    <div id="pane-subs" style="display:none;">
+      <div class="toprow">
+        <input class="search" id="q-sub" type="search" placeholder="Search email addresses&hellip;">
+        <button class="btn btn-ghost" id="csv">Export CSV</button>
+      </div>
+      <div class="rows" id="list-sub"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ============ EDITOR ============ -->
+<div class="sheet" id="sheet">
+  <div class="sheet-bg" id="sheet-bg"></div>
+  <div class="sheet-panel">
+    <div class="sheet-head">
+      <h2 id="sheet-title">New event</h2>
+      <button class="bar-b" id="sheet-x" style="font-size:22px;">&times;</button>
+    </div>
+    <div class="sheet-body">
+      <div id="serr" class="err" style="display:none;"></div>
+
+      <div class="sec">Event</div>
+      <div class="field"><label for="f-title">Title *</label><input id="f-title" type="text"></div>
+      <div class="grid2">
+        <div class="field"><label for="f-start">Starts *</label><input id="f-start" type="datetime-local"></div>
+        <div class="field"><label for="f-end">Ends *</label><input id="f-end" type="datetime-local"></div>
+      </div>
+      <label class="check"><input type="checkbox" id="f-allday"> All-day event</label>
+      <div class="field">
+        <label for="f-excerpt">Excerpt</label>
+        <textarea id="f-excerpt" rows="2"></textarea>
+        <div class="hint">The short line shown when someone hovers the date on the calendar.</div>
+      </div>
+      <div class="field">
+        <label for="f-desc">Full description</label>
+        <textarea id="f-desc" rows="9"></textarea>
+        <div class="hint">Shown on the event page. Leave a blank line between paragraphs.</div>
+      </div>
+
+      <div class="sec">Location</div>
+      <div class="field"><label for="f-venue">Venue name</label><input id="f-venue" type="text" placeholder="Fairbanks Ranch Country Club"></div>
+      <div class="field"><label for="f-addr">Street address</label><input id="f-addr" type="text" placeholder="15150 San Dieguito Road"></div>
+      <div class="grid2">
+        <div class="field"><label for="f-city">City</label><input id="f-city" type="text" placeholder="San Diego"></div>
+        <div class="field"><label for="f-region">State</label><input id="f-region" type="text" placeholder="California"></div>
+        <div class="field"><label for="f-zip">ZIP</label><input id="f-zip" type="text" placeholder="92130"></div>
+        <div class="field"><label for="f-country">Country</label><input id="f-country" type="text" placeholder="United States"></div>
+      </div>
+
+      <div class="sec">Image</div>
+      <div class="field">
+        <img id="f-preview" class="preview" style="display:none;" alt="">
+        <input id="f-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif">
+        <div class="hint" id="f-upstat">JPG, PNG, WebP or GIF, under 5&nbsp;MB. This fills the day square on the calendar.</div>
+      </div>
+      <div class="field"><label for="f-alt">Image description</label><input id="f-alt" type="text" placeholder="What the photo shows, for screen readers"></div>
+
+      <div class="sec">Registration link</div>
+      <div class="field">
+        <label for="f-url">Link</label>
+        <input id="f-url" type="url" placeholder="https://givebutter.com/...">
+        <div class="hint">Givebutter, Eventbrite, or wherever people sign up. Leave blank for no button.</div>
+      </div>
+      <div class="field"><label for="f-urltext">Button text</label><input id="f-urltext" type="text" placeholder="Register"></div>
+
+      <div class="sec">Publishing</div>
+      <label class="check"><input type="checkbox" id="f-featured"> Featured event</label>
+      <div class="field">
+        <label for="f-status">Status</label>
+        <select id="f-status"><option value="draft">Draft — only you can see it</option><option value="published">Published — live on the site</option></select>
+      </div>
+      <div class="field">
+        <label for="f-slug">Page address</label>
+        <input id="f-slug" type="text" placeholder="left blank, made from the title">
+        <div class="hint">The bit after event.html?e= — leave blank and it writes itself.</div>
+      </div>
+
+      <div class="sec">Search engines</div>
+      <div class="field"><label for="f-seot">SEO title</label><input id="f-seot" type="text"></div>
+      <div class="field"><label for="f-seod">SEO description</label><textarea id="f-seod" rows="2"></textarea></div>
+    </div>
+    <div class="foot">
+      <button class="btn btn-primary" id="save">Save</button>
+      <button class="btn btn-ghost" id="cancel">Cancel</button>
+      <button class="btn btn-danger btn-sm" id="del" style="margin-left:auto;display:none;">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="./admin-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+"use strict";
+(function () {
+
+  var cfg = window.LF_ADMIN_CONFIG || {};
+  var lerr = document.getElementById('lerr');
+
+  if (!cfg.SUPABASE_URL || cfg.SUPABASE_URL.indexOf('PASTE') === 0) {
+    lerr.textContent = 'admin-config.js has not been filled in yet. Add your Supabase project URL and publishable key.';
+    lerr.style.display = 'block';
+    document.getElementById('lbtn').disabled = true;
+    return;
+  }
+
+  var sb = window.supabase.createClient(cfg.SUPABASE_URL.replace(/\/+$/, ''), cfg.SUPABASE_PUBLISHABLE_KEY);
+  var S = { token: null, events: [], subs: [], tab: 'events', editing: null, imageUrl: null };
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  // ---------- auth ----------
+
+  async function signIn() {
+    var b = $('lbtn');
+    b.disabled = true; b.textContent = 'Signing in\u2026'; lerr.style.display = 'none';
+    var r = await sb.auth.signInWithPassword({ email: $('lem').value.trim(), password: $('lpw').value });
+    b.disabled = false; b.textContent = 'Sign in';
+    if (r.error) {
+      lerr.textContent = /invalid/i.test(r.error.message)
+        ? 'That email and password combination was not recognised.' : r.error.message;
+      lerr.style.display = 'block';
+      return;
+    }
+    enter(r.data.session);
+  }
+
+  async function enter(session) {
+    S.token = session.access_token;
+    $('who').textContent = session.user.email;
+    $('login').style.display = 'none';
+    $('app').classList.add('on');
+    await loadAll();
+  }
+
+  $('lbtn').addEventListener('click', signIn);
+  [$('lem'), $('lpw')].forEach(function (el) {
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter') signIn(); });
+  });
+  $('signout').addEventListener('click', async function () { await sb.auth.signOut(); location.reload(); });
+  sb.auth.getSession().then(function (r) { if (r.data && r.data.session) enter(r.data.session); });
+
+  // ---------- api ----------
+
+  async function api(path, method, body) {
+    var opts = { method: method || 'GET', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + S.token } };
+    if (body) opts.body = JSON.stringify(body);
+    var res = await fetch(path, opts);
+    var data = {};
+    try { data = await res.json(); } catch (e) {}
+    if (res.status === 401) { alert('Your session expired. Please sign in again.'); await sb.auth.signOut(); location.reload(); throw new Error('expired'); }
+    if (!res.ok || !data.ok) throw new Error((data && data.error) || 'Request failed');
+    return data;
+  }
+
+  function flash(el, msg, ms) {
+    el.textContent = msg; el.style.display = 'block';
+    setTimeout(function () { el.style.display = 'none'; }, ms || 3500);
+  }
+
+  async function loadAll() {
+    try {
+      var a = await api('/api/admin/events');
+      S.events = a.events || [];
+      var b = await api('/api/admin/subscribers');
+      S.subs = b.subscribers || [];
+      $('aerr').style.display = 'none';
+      draw();
+    } catch (e) {
+      if (e.message !== 'expired') flash($('aerr'), e.message, 8000);
+    }
+  }
+
+  // ---------- render ----------
+
+  function fmt(iso, allDay) {
+    var d = new Date(iso);
+    var date = d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    if (allDay) return date;
+    return date + ' \u00b7 ' + d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+  }
+
+  function draw() {
+    $('n-ev').textContent = S.events.length;
+    $('n-sub').textContent = S.subs.filter(function (s) { return s.status === 'active'; }).length;
+    drawEvents();
+    drawSubs();
+  }
+
+  function drawEvents() {
+    var q = $('q-ev').value.trim().toLowerCase();
+    var f = $('f-ev').value;
+    var now = new Date();
+
+    var rows = S.events.filter(function (e) {
+      var past = new Date(e.ends_at) < now;
+      if (f === 'upcoming' && past) return false;
+      if (f === 'past' && !past) return false;
+      if (f === 'draft' && e.status !== 'draft') return false;
+      if (f === 'published' && e.status !== 'published') return false;
+      if (!q) return true;
+      return [e.title, e.excerpt, e.location_name, e.city].filter(Boolean).join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+
+    // Upcoming reads best soonest-first; everything else newest-first.
+    if (f === 'upcoming') rows.sort(function (a, b) { return new Date(a.starts_at) - new Date(b.starts_at); });
+
+    if (!rows.length) {
+      $('list-ev').innerHTML = '<div class="empty">' +
+        (q ? 'Nothing matches that search.' : 'No events here yet. Click <strong>+ New event</strong> to add one.') + '</div>';
+      return;
+    }
+
+    $('list-ev').innerHTML = rows.map(function (e) {
+      var past = new Date(e.ends_at) < now;
+      return '<div class="row row-ev" data-id="' + e.id + '">' +
+        (e.image_url ? '<img class="thumb" src="' + esc(e.image_url) + '" alt="">' : '<div class="thumb-x">No image</div>') +
+        '<div><div class="r-t">' + esc(e.title) + (e.featured ? ' \u2605' : '') + '</div>' +
+          '<div class="r-s">' + esc(e.location_name || e.city || '') + (e.excerpt ? ' \u00b7 ' + esc(e.excerpt.slice(0, 70)) : '') + '</div></div>' +
+        '<div class="r-d">' + esc(fmt(e.starts_at, e.all_day)) + '</div>' +
+        '<div><span class="pill ' + esc(e.status) + '">' + esc(e.status) + '</span>' +
+          (past ? ' <span class="pill past">past</span>' : '') + '</div>' +
+        '<button class="btn btn-ghost btn-sm">Edit</button>' +
+      '</div>';
+    }).join('');
+
+    $('list-ev').querySelectorAll('.row-ev').forEach(function (r) {
+      r.addEventListener('click', function () { open(r.getAttribute('data-id')); });
+    });
+  }
+
+  function drawSubs() {
+    var q = $('q-sub').value.trim().toLowerCase();
+    var rows = S.subs.filter(function (s) { return !q || s.email.toLowerCase().indexOf(q) !== -1; });
+
+    if (!rows.length) {
+      $('list-sub').innerHTML = '<div class="empty">' +
+        (q ? 'No addresses match.' : 'No signups yet.') + '</div>';
+      return;
+    }
+
+    $('list-sub').innerHTML = rows.map(function (s) {
+      return '<div class="row row-sub">' +
+        '<div><div style="font-size:15px;font-weight:500;">' + esc(s.email) + '</div>' +
+          '<div class="r-s">' + esc(s.source_page || '') + '</div></div>' +
+        '<div class="r-d">' + new Date(s.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + '</div>' +
+        '<div><span class="pill ' + esc(s.status) + '">' + esc(s.status) + '</span></div>' +
+        '<button class="btn btn-ghost btn-sm" data-sub="' + s.id + '" data-to="' +
+          (s.status === 'active' ? 'unsubscribed' : 'active') + '">' +
+          (s.status === 'active' ? 'Unsubscribe' : 'Reactivate') + '</button>' +
+      '</div>';
+    }).join('');
+
+    $('list-sub').querySelectorAll('[data-sub]').forEach(function (b) {
+      b.addEventListener('click', async function () {
+        b.disabled = true;
+        try {
+          var d = await api('/api/admin/subscribers', 'PATCH', { id: b.getAttribute('data-sub'), status: b.getAttribute('data-to') });
+          for (var i = 0; i < S.subs.length; i++) if (S.subs[i].id === d.subscriber.id) S.subs[i] = d.subscriber;
+          draw();
+        } catch (e) { flash($('aerr'), e.message); b.disabled = false; }
+      });
+    });
+  }
+
+  // ---------- editor ----------
+
+  // datetime-local needs local wall-clock time with no timezone suffix,
+  // so an ISO string has to be shifted by the browser's offset first.
+  function toLocalInput(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+           'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function open(id) {
+    var e = id ? S.events.find(function (x) { return x.id === id; }) : null;
+    S.editing = e ? e.id : null;
+    S.imageUrl = e ? e.image_url : null;
+
+    $('sheet-title').textContent = e ? 'Edit event' : 'New event';
+    $('del').style.display = e ? 'inline-block' : 'none';
+    $('serr').style.display = 'none';
+    $('f-file').value = '';
+    $('f-upstat').textContent = 'JPG, PNG, WebP or GIF, under 5 MB. This fills the day square on the calendar.';
+
+    var v = e || {};
+    $('f-title').value = v.title || '';
+    $('f-start').value = toLocalInput(v.starts_at);
+    $('f-end').value = toLocalInput(v.ends_at);
+    $('f-allday').checked = !!v.all_day;
+    $('f-excerpt').value = v.excerpt || '';
+    $('f-desc').value = v.description || '';
+    $('f-venue').value = v.location_name || '';
+    $('f-addr').value = v.address_line || '';
+    $('f-city').value = v.city || '';
+    $('f-region').value = v.region || '';
+    $('f-zip').value = v.postal_code || '';
+    $('f-country').value = v.country || '';
+    $('f-alt').value = v.image_alt || '';
+    $('f-url').value = v.source_url || '';
+    $('f-urltext').value = v.source_label || '';
+    $('f-featured').checked = !!v.featured;
+    $('f-status').value = v.status || 'draft';
+    $('f-slug').value = v.slug || '';
+    $('f-seot').value = v.seo_title || '';
+    $('f-seod').value = v.seo_description || '';
+
+    var p = $('f-preview');
+    if (v.image_url) { p.src = v.image_url; p.style.display = 'block'; } else { p.style.display = 'none'; }
+
+    $('sheet').classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    $('sheet').classList.remove('on');
+    document.body.style.overflow = '';
+    S.editing = null;
+  }
+
+  $('new-ev').addEventListener('click', function () { open(null); });
+  $('cancel').addEventListener('click', close);
+  $('sheet-x').addEventListener('click', close);
+  $('sheet-bg').addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('sheet').classList.contains('on')) close(); });
+
+  // ---------- upload ----------
+
+  $('f-file').addEventListener('change', async function () {
+    var file = this.files && this.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) { $('f-upstat').textContent = 'That image is over 5 MB — please use a smaller one.'; this.value = ''; return; }
+
+    $('f-upstat').textContent = 'Uploading\u2026';
+    try {
+      var b64 = await new Promise(function (ok, no) {
+        var r = new FileReader();
+        r.onload = function () { ok(String(r.result).split(',')[1]); };
+        r.onerror = function () { no(new Error('Could not read the file')); };
+        r.readAsDataURL(file);
+      });
+      var d = await api('/api/admin/upload', 'POST', { filename: file.name, contentType: file.type, data: b64 });
+      S.imageUrl = d.url;
+      $('f-preview').src = d.url;
+      $('f-preview').style.display = 'block';
+      $('f-upstat').textContent = 'Uploaded. Remember to Save.';
+    } catch (e) {
+      $('f-upstat').textContent = e.message;
+    }
+  });
+
+  // ---------- save / delete ----------
+
+  $('save').addEventListener('click', async function () {
+    var b = this;
+    $('serr').style.display = 'none';
+
+    var payload = {
+      title: $('f-title').value.trim(),
+      starts_at: $('f-start').value ? new Date($('f-start').value).toISOString() : null,
+      ends_at: $('f-end').value ? new Date($('f-end').value).toISOString() : null,
+      all_day: $('f-allday').checked,
+      excerpt: $('f-excerpt').value.trim(),
+      description: $('f-desc').value.trim(),
+      location_name: $('f-venue').value.trim(),
+      address_line: $('f-addr').value.trim(),
+      city: $('f-city').value.trim(),
+      region: $('f-region').value.trim(),
+      postal_code: $('f-zip').value.trim(),
+      country: $('f-country').value.trim(),
+      image_url: S.imageUrl || '',
+      image_alt: $('f-alt').value.trim(),
+      source_url: $('f-url').value.trim(),
+      source_label: $('f-urltext').value.trim() || 'Register',
+      featured: $('f-featured').checked,
+      status: $('f-status').value,
+      seo_title: $('f-seot').value.trim(),
+      seo_description: $('f-seod').value.trim()
+    };
+    if ($('f-slug').value.trim()) payload.slug = $('f-slug').value.trim();
+
+    if (!payload.title)     { flash($('serr'), 'Please give the event a title.', 5000); return; }
+    if (!payload.starts_at) { flash($('serr'), 'Please set a start date and time.', 5000); return; }
+    if (!payload.ends_at)   { flash($('serr'), 'Please set an end date and time.', 5000); return; }
+
+    b.disabled = true; b.textContent = 'Saving\u2026';
+    try {
+      if (S.editing) {
+        payload.id = S.editing;
+        await api('/api/admin/events', 'PATCH', payload);
+      } else {
+        await api('/api/admin/events', 'POST', payload);
+      }
+      close();
+      await loadAll();
+      flash($('aok'), 'Saved.');
+    } catch (e) {
+      flash($('serr'), e.message, 7000);
+    }
+    b.disabled = false; b.textContent = 'Save';
+  });
+
+  $('del').addEventListener('click', async function () {
+    if (!S.editing) return;
+    if (!confirm('Delete this event permanently? This cannot be undone.')) return;
+    this.disabled = true;
+    try {
+      await api('/api/admin/events?id=' + encodeURIComponent(S.editing), 'DELETE');
+      close();
+      await loadAll();
+      flash($('aok'), 'Event deleted.');
+    } catch (e) { flash($('serr'), e.message, 7000); }
+    this.disabled = false;
+  });
+
+  // ---------- tabs, search, csv ----------
+
+  document.querySelector('.tabs-in').addEventListener('click', function (e) {
+    var t = e.target.closest('.tab');
+    if (!t) return;
+    document.querySelectorAll('.tab').forEach(function (x) { x.classList.remove('on'); });
+    t.classList.add('on');
+    S.tab = t.getAttribute('data-tab');
+    $('pane-events').style.display = S.tab === 'events' ? 'block' : 'none';
+    $('pane-subs').style.display = S.tab === 'subs' ? 'block' : 'none';
+  });
+
+  $('q-ev').addEventListener('input', drawEvents);
+  $('f-ev').addEventListener('change', drawEvents);
+  $('q-sub').addEventListener('input', drawSubs);
+  $('reload').addEventListener('click', loadAll);
+
+  $('csv').addEventListener('click', function () {
+    var cols = ['email', 'created_at', 'source_page', 'status', 'notes'];
+    var lines = [cols.join(',')];
+    S.subs.forEach(function (s) {
+      lines.push(cols.map(function (c) { return '"' + String(s[c] == null ? '' : s[c]).replace(/"/g, '""') + '"'; }).join(','));
+    });
+    var blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'lf-subscribers-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+})();
+</script>
+</body>
+</html>

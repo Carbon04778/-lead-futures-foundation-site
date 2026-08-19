@@ -1,0 +1,75 @@
+/* ============================================================
+   LEAD Futures Foundation — Color Tokens
+   ------------------------------------------------------------
+   The palette is warm, grounded, and human-centered: deep
+   evergreen and olive earth tones, a clay accent, and gold +
+   sage highlights, all resting on a soft off-white ground.
+   Base values come straight from the brand guide (page 6).
+   ============================================================ */
+
+:root {
+  /* ---- Brand core (documented palette) ---- */
+  --lf-evergreen:   #3A4B3A;  /* primary dark green — the cradling hands */
+  --lf-olive:       #6A5B2E;  /* deep bronze-olive */
+  --lf-clay:        #A65A2A;  /* warm terracotta accent */
+  --lf-sage:        #9C9350;  /* muted olive-green */
+  --lf-field-gold:  #E1BE63;  /* gold — the arc of growth */
+  --lf-off-white:   #F2F2E7;  /* soft cream page ground */
+  --lf-sand:        #F2F2E7;  /* cream surface (per brand guide) */
+
+  /* ---- Extended brand tints / shades (derived for UI use) ---- */
+  --lf-evergreen-700: #2C3A2C;  /* hover / pressed evergreen */
+  --lf-evergreen-300: #6E7E6E;  /* muted evergreen for secondary text */
+  --lf-evergreen-100: #DCE2DC;  /* faint green wash / borders */
+  --lf-clay-700:      #8A4620;  /* hover / pressed clay */
+  --lf-clay-100:      #EBD9CC;  /* clay tint surface */
+  --lf-leaf:          #8D9F39;  /* lively leaf green (sampled from logo art) */
+  --lf-field-gold-100:#F4E7C4;  /* gold tint surface */
+
+  /* ---- Neutrals (warm-leaning, tuned to the cream ground) ---- */
+  --lf-parchment: #EAEADB;  /* one step deeper than off-white for layered surfaces */
+  --lf-white:     #FFFFFF;
+  --lf-ink:       #26301F;  /* near-black warm green — primary text */
+  --lf-stone-600: #5B5F50;  /* secondary text */
+  --lf-stone-400: #8A8C7E;  /* tertiary text / placeholders */
+  --lf-line:      #D8D8C6;  /* hairline borders on cream */
+  --lf-line-soft: #E5E5D6;  /* faint dividers */
+
+  /* ---- Semantic status (kept earthy, on-brand) ---- */
+  --lf-success: #4F7A3F;
+  --lf-warning: #C98A2B;
+  --lf-danger:  #B24A33;
+  --lf-info:    #4E6B6B;
+
+  /* ============================================================
+     Semantic aliases — reference THESE in components
+     ============================================================ */
+
+  /* Surfaces */
+  --surface-page:      var(--lf-off-white);
+  --surface-card:      var(--lf-white);
+  --surface-sunken:    var(--lf-parchment);
+  --surface-inverse:   var(--lf-evergreen);
+  --surface-accent:    var(--lf-clay);
+
+  /* Text */
+  --text-primary:      var(--lf-ink);
+  --text-secondary:    var(--lf-stone-600);
+  --text-muted:        var(--lf-stone-400);
+  --text-on-dark:      var(--lf-off-white);
+  --text-on-accent:    #FBF1E9;
+  --text-brand:        var(--lf-evergreen);
+  --text-accent:       var(--lf-clay);
+
+  /* Lines & borders */
+  --border-default:    var(--lf-line);
+  --border-soft:       var(--lf-line-soft);
+  --border-strong:     var(--lf-evergreen);
+
+  /* Interactive */
+  --action-primary:        var(--lf-evergreen);
+  --action-primary-hover:  var(--lf-evergreen-700);
+  --action-accent:         var(--lf-clay);
+  --action-accent-hover:   var(--lf-clay-700);
+  --focus-ring:            var(--lf-field-gold);
+}

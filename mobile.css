@@ -1,0 +1,161 @@
+/* ============================================================
+   LEAD Futures — Mobile responsive layer
+   Loaded after the design system + page styles so it can safely
+   override the inline styles baked into index.html / programs.html.
+   ============================================================ */
+
+/* ---- Hamburger menu (hidden on desktop) ---- */
+.lf-menu-checkbox { display: none; }
+.lf-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.lf-menu-btn svg { width: 22px; height: 22px; display: block; }
+.lf-menu-btn .lf-icon-close { display: none; }
+.lf-menu-checkbox:checked ~ .lf-menu-btn .lf-icon-open { display: none; }
+.lf-menu-checkbox:checked ~ .lf-menu-btn .lf-icon-close { display: block; }
+
+/* ============================================================
+   TABLET  (<= 900px)
+   ============================================================ */
+@media (max-width: 900px) {
+  header[data-screen-label="Header"] {
+    padding: 12px 20px !important;
+    flex-wrap: wrap;
+  }
+  .lf-menu-btn { display: flex; }
+
+  header[data-screen-label="Header"] nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100%;
+    order: 10;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .lf-menu-checkbox:checked ~ nav {
+    max-height: 480px;
+    padding-top: 10px;
+    padding-bottom: 18px;
+  }
+  header[data-screen-label="Header"] nav a.lf-navlink {
+    width: 100%;
+    padding: 13px 2px !important;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  header[data-screen-label="Header"] nav a[href*="givebutter.com/opengiving"] {
+    display: inline-flex !important;
+    margin-top: 14px;
+    align-self: flex-start;
+  }
+
+  /* Big multi-column stat/logo grids step down a notch */
+  [style*="grid-template-columns: repeat(6, 1fr)"] { grid-template-columns: repeat(3, 1fr) !important; }
+  [style*="grid-template-columns: repeat(5, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Split content/image sections stack early */
+  [style*="grid-template-columns: 1.05fr 1fr"],
+  [style*="grid-template-columns: 1.3fr 1fr"],
+  [style*="grid-template-columns: 1.5fr repeat(3, 1fr)"],
+  [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+  [style*="grid-template-rows: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-rows: unset !important;
+    min-height: auto !important;
+  }
+  /* The 3 Steve Garvey photos relied on height:100% of a fixed-height grid
+     row; once that grid becomes a stacked flex column on mobile there is no
+     row height to inherit from, so give each photo an explicit height. */
+  [style*="grid-row: span 2"]              { grid-row: auto !important; height: 260px !important; }
+  [style*="object-position: center 15%"]   { height: 220px !important; }
+  [style*="object-position: center 30%"]   { height: 220px !important; }
+}
+
+/* ============================================================
+   PHONE  (<= 640px)
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* --- Section / block padding: 40px side gutters -> 20px --- */
+  [style*="padding: 14px 40px"]        { padding: 12px 16px !important; }
+  [style*="padding: 88px 40px 72px"]   { padding: 48px 20px 36px !important; }
+  [style*="padding: 72px 40px 88px"]   { padding: 40px 20px 48px !important; }
+  [style*="padding: 88px 40px;"]       { padding: 48px 20px !important; }
+  [style*="padding: 96px 40px"]        { padding: 48px 20px !important; }
+  [style*="padding: 80px 40px"]        { padding: 44px 20px !important; }
+  [style*="padding: 72px 40px;"]       { padding: 40px 20px !important; }
+  [style*="padding: 44px 40px"]        { padding: 28px 20px !important; }
+  [style*="padding: 64px 40px 36px"]   { padding: 36px 20px 24px !important; }
+  [style*="padding: 48px 40px 36px"]   { padding: 28px 20px 20px !important; }
+  [style*="padding: 40px 40px 96px"]   { padding: 24px 20px 48px !important; }
+  [style*="padding: 88px 64px"]        { padding: 36px 20px !important; }
+  [style*="padding: 0 40px"]           { padding: 0 20px !important; }
+
+  /* --- Remaining multi-column grids collapse to one column --- */
+  [style*="grid-template-columns: repeat(2, 1fr)"],
+  [style*="grid-template-columns: repeat(3, 1fr)"] { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-template-columns: repeat(5, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-template-columns: repeat(6, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* --- Headline / display type scales down --- */
+  [style*="font-size: 66px"] { font-size: 34px !important; }
+  [style*="font-size: 64px"] { font-size: 32px !important; }
+  [style*="font-size: 58px"] { font-size: 32px !important; }
+  [style*="font-size: 46px"] { font-size: 28px !important; }
+  [style*="font-size: 44px"] { font-size: 26px !important; }
+  [style*="font-size: 42px"] { font-size: 25px !important; }
+  [style*="font-size: 40px"] { font-size: 24px !important; }
+  [style*="font-size: 38px"] { font-size: 24px !important; }
+  [style*="font-size: 290px"] { font-size: 130px !important; }
+  [style*="font-size: 25px"] { font-size: 21px !important; }
+  [style*="font-size: 22px"] { font-size: 19px !important; }
+  [style*="font-size: 21px"] { font-size: 17px !important; }
+  [style*="font-size: 20px"] { font-size: 17px !important; }
+  [style*="font-size: 19px"] { font-size: 16px !important; }
+  [style*="font-size: 18px"] { font-size: 16px !important; }
+
+  /* --- Fixed heights ease off on small screens --- */
+  [style*="min-height: 640px"] { min-height: 460px !important; }
+  [style*="min-height: 560px"] { min-height: auto !important; }
+  [style*="height: 640px"]     { height: 380px !important; }
+  [style*="height: 560px"]     { height: 300px !important; }
+  [style*="height: 480px"]     { height: 260px !important; }
+  [style*="height: 460px"]     { height: 260px !important; }
+  [style*="height: 440px"]     { height: 240px !important; }
+
+  /* Founder rows: photo + text side-by-side is tight on phones */
+  [style*="display: flex; gap: 24px; align-items: flex-start;"] {
+    flex-direction: column !important;
+  }
+
+  /* Newsletter sign-up form stacks + full width button */
+  [style*="max-width: 480px; margin: 0 auto; flex-wrap: wrap"] input,
+  [style*="max-width: 480px; margin: 0 auto; flex-wrap: wrap"] button {
+    width: 100%;
+  }
+
+  section[data-screen-label], header[data-screen-label], footer[data-screen-label] {
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================================
+   SMALL PHONE  (<= 400px)
+   ============================================================ */
+@media (max-width: 400px) {
+  [style*="font-size: 34px"] { font-size: 29px !important; }
+  header a[href="#top"] span, header a[href="index.html"] span { font-size: 20px !important; }
+  [style*="grid-template-columns: repeat(2, 1fr)"] { grid-template-columns: 1fr !important; }
+}

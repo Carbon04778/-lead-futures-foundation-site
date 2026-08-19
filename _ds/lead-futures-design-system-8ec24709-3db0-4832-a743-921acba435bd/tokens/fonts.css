@@ -1,0 +1,78 @@
+/* ============================================================
+   LEAD Futures Foundation — Webfonts
+   ------------------------------------------------------------
+   Display serif: "The Seasons" (brand) — a commercial font not
+   available on Google Fonts. SUBSTITUTED here with Cormorant
+   Garamond, the closest free high-contrast elegant serif.
+   >> Replace these files with licensed "The Seasons" woff2s to
+      match the brand exactly. See readme.md.
+
+   Body / UI sans: Karla (brand — exact match, open source).
+   ============================================================ */
+
+/* ---- Display serif (substitute for "The Seasons") ---- */
+@font-face {
+  font-family: "Seasons Display";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Seasons Display";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Seasons Display";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Seasons Display";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Seasons Display";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-500-italic.woff2") format("woff2");
+}
+
+/* ---- Body / UI sans (Karla — brand exact) ---- */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/karla-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/karla-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/karla-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/karla-700.woff2") format("woff2");
+}

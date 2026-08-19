@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event — LEAD Futures Foundation</title>
+
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/tokens/base.css">
+<link rel="stylesheet" href="_ds/lead-futures-design-system-8ec24709-3db0-4832-a743-921acba435bd/styles.css">
+<link rel="stylesheet" href="mobile.css">
+
+<style>
+  body { margin: 0; background: var(--lf-evergreen); font-family: var(--font-body); overflow-x: hidden; }
+
+  .ev-wrap { max-width: 1120px; margin: 0 auto; padding: 46px 40px 96px; }
+
+  .ev-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14.5px; font-weight: 600; color: var(--lf-off-white);
+    text-decoration: none; margin-bottom: 46px;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .ev-back:hover { color: var(--lf-field-gold); }
+
+  /* Meta column left, body right — the layout in the reference. */
+  .ev-cols { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
+  .ev-meta { position: sticky; top: 40px; }
+
+  .ev-title {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 34px; line-height: 1.16; color: var(--lf-off-white);
+    margin: 0 0 22px; letter-spacing: -0.01em;
+  }
+  .ev-when { font-size: 14.5px; font-weight: 600; color: var(--lf-field-gold); line-height: 1.75; margin-bottom: 20px; }
+  .ev-where { font-size: 13.5px; line-height: 1.75; color: rgba(242,242,231,0.72); margin-bottom: 24px; }
+  .ev-where strong { display: block; color: rgba(242,242,231,0.94); font-weight: 600; margin-bottom: 3px; }
+
+  .ev-hero {
+    width: 100%; border-radius: var(--radius-lg); display: block;
+    margin-bottom: 26px; box-shadow: var(--shadow-md);
+  }
+
+  .ev-body { font-size: 16px; line-height: 1.9; color: rgba(242,242,231,0.9); }
+  .ev-body p { margin: 0 0 26px; }
+  .ev-body p:last-child { margin-bottom: 0; }
+
+  .ev-actions { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+  .ev-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: var(--radius-pill); padding: 13px 26px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    cursor: pointer; border: none; font-family: var(--font-body);
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .ev-btn-primary { background: var(--lf-clay); color: #FBF1E9; }
+  .ev-btn-primary:hover { background: var(--lf-clay-700); color: #FBF1E9; }
+  .ev-btn-ghost {
+    background: transparent; color: rgba(242,242,231,0.88);
+    border: 1.5px solid rgba(242,242,231,0.34);
+  }
+  .ev-btn-ghost:hover { border-color: var(--lf-field-gold); color: var(--lf-field-gold); }
+
+  .ev-state { text-align: center; padding: 130px 20px; color: rgba(242,242,231,0.72); }
+  .ev-state h2 { font-family: var(--font-display); font-size: 32px; color: var(--lf-off-white); margin: 0 0 12px; font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .ev-cols { grid-template-columns: 1fr; gap: 30px; }
+    .ev-meta { position: static; }
+    .ev-wrap { padding: 32px 20px 72px; }
+    .ev-title { font-size: 29px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ev-wrap">
+  <a class="ev-back" href="events.html">&larr; Back to All Events</a>
+  <div id="ev-root">
+    <div class="ev-state">Loading&hellip;</div>
+  </div>
+</div>
+
+<footer style="background: var(--lf-evergreen); border-top: 1px solid rgba(242,242,231,0.14); color: var(--lf-off-white); padding: 40px;">
+  <div style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+      <img src="assets/logo-mark-color.png" alt="" style="height: 32px;">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--lf-off-white);">Lead<em style="color: var(--lf-field-gold);">futures</em></span>
+    </a>
+    <span style="font-size: 13px; color: rgba(242,242,231,0.6);">&copy; 2026 LEAD Futures Foundation &middot; A 501(c)(3) nonprofit</span>
+    <a href="admin.html" aria-label="Admin sign in" title="Admin sign in" style="display: inline-flex; align-items: center; color: rgba(242,242,231,0.42);" onmouseover="this.style.color='var(--lf-field-gold)'" onmouseout="this.style.color='rgba(242,242,231,0.42)'">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+"use strict";
+(function () {
+
+  var root = document.getElementById('ev-root');
+  var slug = new URLSearchParams(location.search).get('e');
+
+  var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function clock(d) {
+    var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if (h === 0) h = 12;
+    return h + ':' + pad(m) + ' ' + ap;
+  }
+  function longDate(d) {
+    return DAYS[d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function fail(title, msg) {
+    root.innerHTML = '<div class="ev-state"><h2>' + esc(title) + '</h2><p>' + esc(msg) + '</p></div>';
+  }
+
+  if (!slug) {
+    fail('Event not found', 'No event was specified. Head back to the calendar to pick one.');
+    return;
+  }
+
+  fetch('/api/events?slug=' + encodeURIComponent(slug))
+    .then(function (r) { return r.json().then(function (d) { return { status: r.status, d: d }; }); })
+    .then(function (res) {
+      if (res.status === 404) {
+        fail('Event not found', 'This event may have been removed, or the link may be out of date.');
+        return;
+      }
+      if (!res.d || !res.d.ok) throw new Error('failed');
+      show(res.d.event);
+    })
+    .catch(function (err) {
+      console.error('[event]', err);
+      fail('Something went wrong', 'The event could not be loaded. Please refresh the page.');
+    });
+
+  function show(ev) {
+    var s = new Date(ev.starts_at);
+    var e = new Date(ev.ends_at);
+
+    document.title = (ev.seo_title || ev.title) + ' — LEAD Futures Foundation';
+    if (ev.seo_description || ev.excerpt) {
+      var m = document.createElement('meta');
+      m.name = 'description';
+      m.content = ev.seo_description || ev.excerpt;
+      document.head.appendChild(m);
+    }
+
+    // A multi-day event needs both dates spelled out; a single-day one
+    // reads better as one date with a time range.
+    var sameDay = s.toDateString() === e.toDateString();
+    var when = ev.all_day
+      ? longDate(s) + (sameDay ? '' : ' &ndash; ' + longDate(e)) + '<br>All day'
+      : sameDay
+        ? longDate(s) + '<br>' + clock(s) + ' &ndash; ' + clock(e)
+        : longDate(s) + ', ' + clock(s) + '<br>to ' + longDate(e) + ', ' + clock(e);
+
+    var addr = [ev.address_line, [ev.city, ev.region, ev.postal_code].filter(Boolean).join(', '), ev.country].filter(Boolean);
+    var mapQuery = [ev.location_name, ev.address_line, ev.city, ev.region, ev.postal_code].filter(Boolean).join(' ');
+
+    // Paragraph breaks come from blank lines in the admin textarea.
+    var body = (ev.description || ev.excerpt || '')
+      .split(/\n\s*\n/)
+      .map(function (p) { return p.trim(); })
+      .filter(Boolean)
+      .map(function (p) { return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>'; })
+      .join('');
+
+    root.innerHTML =
+      '<div class="ev-cols">' +
+        '<div class="ev-meta">' +
+          '<h1 class="ev-title">' + esc(ev.title) + '</h1>' +
+          '<div class="ev-when">' + when + '</div>' +
+          (ev.location_name || addr.length
+            ? '<div class="ev-where">' +
+                (ev.location_name ? '<strong>' + esc(ev.location_name) + '</strong>' : '') +
+                addr.map(esc).join('<br>') +
+              '</div>'
+            : '') +
+          '<div class="ev-actions">' +
+            (ev.source_url
+              ? '<a class="ev-btn ev-btn-primary" href="' + esc(ev.source_url) + '" target="_blank" rel="noopener">' +
+                  esc(ev.source_label || 'Register') + '</a>'
+              : '') +
+            '<button type="button" class="ev-btn ev-btn-ghost" id="ev-ics">Add to calendar</button>' +
+            (mapQuery
+              ? '<a class="ev-btn ev-btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' +
+                  encodeURIComponent(mapQuery) + '">Get directions</a>'
+              : '') +
+          '</div>' +
+        '</div>' +
+        '<div>' +
+          (ev.image_url
+            ? '<img class="ev-hero" src="' + esc(ev.image_url) + '" alt="' + esc(ev.image_alt || ev.title) + '">'
+            : '') +
+          '<div class="ev-body">' + (body || '<p>Further details to follow.</p>') + '</div>' +
+        '</div>' +
+      '</div>';
+
+    var ics = document.getElementById('ev-ics');
+    if (ics) ics.addEventListener('click', function () { download(ev); });
+  }
+
+  // .ics uses UTC ("Z") timestamps so the event lands at the right local
+  // time in whatever calendar app and timezone the visitor is using.
+  function icsStamp(iso) {
+    var d = new Date(iso);
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' +
+           pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+  }
+
+  function fold(line) {
+    // RFC 5545 caps lines at 75 octets; longer ones continue with a space.
+    if (line.length <= 74) return line;
+    var out = [line.slice(0, 74)];
+    var rest = line.slice(74);
+    while (rest.length) { out.push(' ' + rest.slice(0, 73)); rest = rest.slice(73); }
+    return out.join('\r\n');
+  }
+
+  function escICS(s) {
+    return String(s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  }
+
+  function download(ev) {
+    var loc = [ev.location_name, ev.address_line, ev.city, ev.region, ev.postal_code, ev.country].filter(Boolean).join(', ');
+    var lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//LEAD Futures Foundation//Events//EN',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:' + ev.slug + '@leadfuturesfoundation.org',
+      'DTSTAMP:' + icsStamp(new Date().toISOString()),
+      'DTSTART:' + icsStamp(ev.starts_at),
+      'DTEND:' + icsStamp(ev.ends_at),
+      fold('SUMMARY:' + escICS(ev.title)),
+      loc ? fold('LOCATION:' + escICS(loc)) : '',
+      fold('DESCRIPTION:' + escICS(ev.excerpt || ev.description || 'Presented by LEAD Futures Foundation.')),
+      ev.source_url ? fold('URL:' + ev.source_url) : '',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].filter(Boolean).join('\r\n');
+
+    var blob = new Blob([lines], { type: 'text/calendar;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = ev.slug + '.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+/* ============================================================
+   LEAD Futures Foundation — Typography Tokens
+   ------------------------------------------------------------
+   Two voices:
+   • "Seasons Display" (serif) — for headlines, the brand
+     wordmark feel, big emotive statements. Set generously,
+     often with an italic counterpoint (e.g. "Lead futures").
+   • Karla (sans) — for sub-headings, body, UI and labels.
+     Calm, legible, humanist.
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-display: "Seasons Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body:    "Karla", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono:    ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+  /* ---- Weights ---- */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+
+  /* ---- Type scale (rem; 1rem = 16px) ---- */
+  --fs-display-2xl: 5.25rem;  /* 84px — hero serif statements */
+  --fs-display-xl:  4rem;     /* 64px */
+  --fs-display-lg:  3rem;     /* 48px */
+  --fs-display-md:  2.25rem;  /* 36px */
+  --fs-h1:          2rem;     /* 32px */
+  --fs-h2:          1.5rem;   /* 24px */
+  --fs-h3:          1.25rem;  /* 20px */
+  --fs-body-lg:     1.125rem; /* 18px */
+  --fs-body:        1rem;     /* 16px */
+  --fs-body-sm:     0.875rem; /* 14px */
+  --fs-caption:     0.75rem;  /* 12px */
+  --fs-overline:    0.6875rem;/* 11px — tracked-out labels */
+
+  /* ---- Line heights ---- */
+  --lh-tight:   1.05; /* @kind font */
+  --lh-snug:    1.2; /* @kind font */
+  --lh-normal:  1.5; /* @kind font */
+  --lh-relaxed: 1.65; /* @kind font */
+
+  /* ---- Letter spacing ---- */
+  --ls-tight:    -0.02em; /* @kind font */
+  --ls-normal:   0; /* @kind font */
+  --ls-wide:     0.04em; /* @kind font */
+  --ls-overline: 0.18em; /* @kind font */
+}

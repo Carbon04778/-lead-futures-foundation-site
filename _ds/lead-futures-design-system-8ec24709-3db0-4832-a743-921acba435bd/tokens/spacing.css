@@ -1,0 +1,56 @@
+/* ============================================================
+   LEAD Futures Foundation — Spacing, Radii, Shadows, Layout
+   ------------------------------------------------------------
+   Generous, calm spacing. Soft (not pill-round) corners that
+   echo the organic curves of the logo. Shadows are low and
+   warm — never harsh; the brand feels grounded, not floating.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4 */
+  --space-2:   0.5rem;   /* 8 */
+  --space-3:   0.75rem;  /* 12 */
+  --space-4:   1rem;     /* 16 */
+  --space-5:   1.5rem;   /* 24 */
+  --space-6:   2rem;     /* 32 */
+  --space-7:   3rem;     /* 48 */
+  --space-8:   4rem;     /* 64 */
+  --space-9:   6rem;     /* 96 */
+  --space-10:  8rem;     /* 128 */
+
+  /* ---- Corner radii (soft, organic) ---- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   28px;
+  --radius-pill: 999px;
+
+  /* ---- Borders ---- */
+  --border-width:    1px;
+  --border-width-md: 1.5px;
+  --border-width-lg: 2px;
+
+  /* ---- Shadows (warm, low, grounded) ---- */
+  --shadow-xs: 0 1px 2px rgba(38, 48, 31, 0.06);
+  --shadow-sm: 0 2px 6px rgba(38, 48, 31, 0.07);
+  --shadow-md: 0 8px 20px rgba(38, 48, 31, 0.08);
+  --shadow-lg: 0 16px 40px rgba(38, 48, 31, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(225, 190, 99, 0.55); /* field-gold ring */
+
+  /* ---- Layout ---- */
+  --container-sm: 640px;
+  --container-md: 880px;
+  --container-lg: 1120px;
+  --container-xl: 1280px;
+  --gutter:       var(--space-5);
+
+  /* ---- Motion (calm, no bounce) ---- */
+  --ease-out:   cubic-bezier(0.2, 0.6, 0.2, 1); /* @kind other */
+  --ease-in-out:cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast:   140ms; /* @kind other */
+  --dur-normal: 220ms; /* @kind other */
+  --dur-slow:   360ms; /* @kind other */
+}
